@@ -4,9 +4,5 @@ use std::time::Duration;
 
 fn tcp_connect(target: SocketAddr, timeout: Duration) -> io::Result<()> {
     let result = TcpStream::connect_timeout(&target, timeout);
-
-    match result {
-        Ok(_) => Ok(()),
-        Err(e) => Err(e)
-    }
+    result.map(|_| ())
 }
